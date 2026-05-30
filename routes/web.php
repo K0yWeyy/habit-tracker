@@ -8,11 +8,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-// Route untuk habit tracker (dengan middleware auth opsional nanti)
+// Route untuk habit tracker
 Route::prefix('app')->group(function () {
     Route::get('/', [HabitController::class, 'index'])->name('habits.index');
     Route::post('/habits', [HabitController::class, 'store'])->name('habits.store');
     Route::delete('/habits/{habit}', [HabitController::class, 'destroy'])->name('habits.destroy');
     Route::post('/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
     Route::get('/history', [HabitController::class, 'history'])->name('habits.history');
+    Route::get('/all-history', [HabitController::class, 'allHistory'])->name('habits.all-history'); // BARU
 });
